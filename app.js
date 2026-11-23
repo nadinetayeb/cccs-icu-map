@@ -100,6 +100,7 @@ function showDetail(u) {
       <p><strong>Unit contact:</strong> <span class="placeholder">${u.phone}</span></p>
       <p><strong>Email:</strong> <span class="placeholder">${u.email}</span></p>
       ${u.website ? `<p><a href="${u.website}" target="_blank" rel="noopener">Visit hospital website</a></p>` : ""}
+      ${u.source ? `<p class="source"><a href="${u.source}" target="_blank" rel="noopener">Source</a></p>` : ""}
       ${u.notes ? `<p class="notes">${u.notes}</p>` : ""}
       ${
         /PLACEHOLDER/i.test((u.phone || "") + " " + (u.email || ""))

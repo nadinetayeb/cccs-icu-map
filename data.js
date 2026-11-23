@@ -42,7 +42,8 @@ const ICU_UNITS = [
     phone: "(519) 685-8500 (LHSC switchboard — CCTC)",
     email: "via switchboard — critical care on-call",
     website: "https://www.lhsc.on.ca",
-    notes: "Dedicated surgical & trauma critical care unit (CCTC) at Victoria Hospital, within the Critical Care Western program. 30 beds per LHSC.",
+    notes: "Dedicated surgical & trauma critical care unit (CCTC) at Victoria Hospital, within the Critical Care Western program.",
+    source: "https://www.lhsc.on.ca/critical-care-trauma-centre/welcome-to-the-critical-care-trauma-centre",
   },
   {
     id: "lhsc-university-msicu",
@@ -57,7 +58,8 @@ const ICU_UNITS = [
     phone: "(519) 685-8500 (LHSC switchboard — UH MSICU)",
     email: "via switchboard — critical care on-call",
     website: "https://www.lhsc.on.ca",
-    notes: "Adult medical-surgical ICU at LHSC's University Hospital site (Windermere Rd), serving complex medical, transplant & vascular-surgical patients. 24 beds per LHSC.",
+    notes: "Adult medical-surgical ICU at LHSC's University Hospital site (Windermere Rd), serving complex medical, transplant & vascular-surgical patients.",
+    source: "https://www.lhsc.on.ca/icu/about-the-medical-surgical-intensive-care-unit-msicu",
   },
   {
     id: "toronto-general",

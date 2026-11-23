@@ -149,6 +149,7 @@ main {
 .notes { color: var(--ink); }
 .placeholder-note { font-size: 0.8rem; color: var(--dim); border-top: 1px dashed var(--line); padding-top: 8px; }
 .detail a { color: var(--accent); }
+.source { font-size: 0.8rem; }
 
 /* ---------- Footer ---------- */
 footer {
