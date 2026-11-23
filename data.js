@@ -40,7 +40,7 @@ const ICU_UNITS = [
     types: ["trauma"],
     beds: 30,
     phone: "(519) 685-8500 (LHSC switchboard — CCTC)",
-    email: "via switchboard — critical care on-call",
+    email: "brenda.morgan@lhsc.on.ca",
     website: "https://www.lhsc.on.ca",
     notes: "Dedicated surgical & trauma critical care unit (CCTC) at Victoria Hospital, within the Critical Care Western program.",
     source: "https://www.lhsc.on.ca/critical-care-trauma-centre/welcome-to-the-critical-care-trauma-centre",
