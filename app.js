@@ -185,7 +185,7 @@ modalClose.addEventListener("click", () => modal.classList.remove("visible"));
 // set the endpoint, e.g.:
 //   const FORM_ENDPOINT = "https://formspree.io/f/yourFormId";
 // Leave "" and the form falls back to a pre-filled email draft instead.
-const FORM_ENDPOINT = "";
+const FORM_ENDPOINT = "https://formspree.io/f/mzerkjvw";
 
 // Returns true only on a successful 2xx from the endpoint; any
 // network/CORS failure is caught and surfaced as a false.
