@@ -1,15 +1,33 @@
 // =============================================================
 //  SEED DATA — Canadian Critical Care Units (demo/prototype)
+//  These are REAL hospitals, but most bed counts & contacts are
+//  PLACEHOLDERS awaiting verification; pin coords are geocoded.
 // =============================================================
-//  These are REAL hospitals, used as a demo skeleton for the
-//  CCCS ICU Map prototype. Bed counts are APPROXIMATE starting
-//  figures (sourced loosely from the CCCTG 2015 national census,
-//  PMID 25888116) and contact fields are PLACEHOLDERS to be
-//  verified/filled in. Pin coordinates were geocoded from OpenStreetMap.
+//  HOW TO ADD A UNIT (copy this template, fill in the blanks)
+// =============================================================
+//  Paste a block like this anywhere inside the [ ] below, then
+//  save. To get coordinates: right-click the exact building on
+//  Google Maps and copy the lat/lng it shows.
 //
-//  To add a unit: copy one object below, change the fields.
-//  Types use the keys defined in TYPE_DEFS (app.js) so the map
-//  colouring and badges pick them up automatically.
+//  {
+//    id: "your-hospital-id",                 // unique, lowercase, hyphens
+//    name: "Hospital Name ICU",              // shows as the pin's title
+//    hospital: "Full Hospital / Health Org",
+//    city: "City",
+//    province: "Ontario",                    // full name
+//    provinceCode: "ON",                     // 2-letter
+//    lat: 42.96046, lng: -81.22645,          // <-- from Google Maps
+//    types: ["medsurg"],                     // see keys in app.js
+//    beds: 0,                                // approx or "—"
+//    phone: "number or 'PLACEHOLDER'",
+//    email: "someone@hospital.ca or 'PLACEHOLDER'",
+//    website: "https://hospital.ca",
+//    notes: "1-line description, optional.",
+//    source: "https://...official page, optional.",
+//  },
+//
+//  type keys (from app.js): "medsurg" | "cardiac" | "neuro" |
+//       "trauma" | "picu"
 // =============================================================
 
 const ICU_UNITS = [
