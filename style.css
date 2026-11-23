@@ -196,3 +196,4 @@ footer {
   font-size: 0.9rem;
 }
 #form-feedback .ok { color: #166534; font-size: 0.9rem; }
+#form-feedback .warn { color: #9a3412; font-size: 0.9rem; }

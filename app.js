@@ -178,38 +178,65 @@ const modalClose = document.getElementById("modal-close");
 modalOpen.addEventListener("click", () => modal.classList.add("visible"));
 modalClose.addEventListener("click", () => modal.classList.remove("visible"));
 
-// Submitting composes a pre-filled email to CCCS so someone
-// reviews the entry BEFORE it appears on the map.
+// =============================================================
+//  "Put your ICU on the map" submission target
+// =============================================================
+// Real submissions POST here. Create a free form at formspree.io and
+// set the endpoint, e.g.:
+//   const FORM_ENDPOINT = "https://formspree.io/f/yourFormId";
+// Leave "" and the form falls back to a pre-filled email draft instead.
+const FORM_ENDPOINT = "";
+
+// Returns true only on a successful 2xx from the endpoint; any
+// network/CORS failure is caught and surfaced as a false.
+async function postForm(data) {
+  try {
+    const res = await fetch(FORM_ENDPOINT, {
+      method: "POST",
+      headers: { Accept: "application/json" },
+      body: JSON.stringify(data),
+    });
+    return res.ok;
+  } catch {
+    return false;
+  }
+}
+
+// Submit: capture the fields, send them, then show the outcome.
 document.getElementById("suggest-form").addEventListener("submit", (e) => {
   e.preventDefault();
   const f = e.target;
-  const body = [
-    "Suggested ICU for the CCCS ICUs of Canada map:",
-    "",
-    `- Hospital: ${f.hospital.value.trim()}`,
-    `- City: ${f.city.value.trim()}`,
-    `- Province: ${f.province.value.trim()}`,
-    `- Unit type: ${f.type.value}`,
-    `- Approx. beds: ${f.beds.value || "unknown"}`,
-    `- Unit contact name: ${f.contactName.value || "—"}`,
-    `- Contact email: ${f.email.value || "—"}`,
-    `- Notes: ${f.notes.value.trim() || "—"}`,
-    "",
-    "Submitted via the CCCS ICU Map prototype.",
-  ].join("\n");
-
-  const href =
-    "mailto:showcase@cccs.ca" +
-    "?subject=" + encodeURIComponent("Suggested ICU for the map: " + f.hospital.value.trim()) +
-    "&body=" + encodeURIComponent(body);
-
+  const data = {
+    "Hospital": f.hospital.value.trim(),
+    "City": f.city.value.trim(),
+    "Province": f.province.value.trim(),
+    "Unit type": f.type.value,
+    "Approx. beds": f.beds.value.trim() || "unknown",
+    "Contact name": f.contactName.value.trim() || "—",
+    "Contact email": f.email.value.trim() || "—",
+    "Notes": f.notes.value.trim() || "—",
+  };
   const feedback = document.getElementById("form-feedback");
-  feedback.innerHTML =
-    `<p class="ok">Thanks! Your suggestion opens a pre-filled email to validate@cccs.ca
-     (address is a placeholder). A CCCS moderator will review and confirm the unit
-     before it gets added to the map.</p>
-     <p class="dim">If your email app didn't open, copy this link:<br>
-     <a href="${href}">${href}</a></p>`;
+
+  if (FORM_ENDPOINT) {
+    postForm(data).then((ok) => {
+      feedback.innerHTML = ok
+        ? `<p class="ok">Submitted! A CCCS moderator will verify and confirm the unit before it's added to the map.</p>`
+        : `<p class="warn">The submission didn't go through. Please email the CCCS contact directly with these details.</p>`;
+    });
+  } else {
+    // No backend configured yet -> compose a pre-filled email draft.
+    const body =
+      Object.entries(data).map(([k, v]) => `- ${k}: ${v}`).join("\n") +
+      "\n\nSubmitted via the CCCS ICU Map prototype.";
+    const href =
+      "mailto:moderator@cccs.ca" +
+      "?subject=" + encodeURIComponent("Suggested ICU for the map: " + data.Hospital) +
+      "&body=" + encodeURIComponent(body);
+    feedback.innerHTML =
+      `<p class="ok">Thanks! Your suggestion opens a pre-filled email draft for a CCCS moderator to review.</p>
+       <p class="dim">If your mail app didn't open, use this link:<br><a href="${href}">${href}</a></p>`;
+  }
   modal.classList.remove("visible");
 });
 
